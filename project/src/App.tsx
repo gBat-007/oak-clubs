@@ -144,7 +144,13 @@ function App() {
   // Check URL parameters for success state
   
   if (showJoinForm && selectedClub) {
-    return <JoinForm club={selectedClub} onBack={handleBackToHome} onSuccess={() => setJoinSuccess(true)} />;
+    return <JoinForm club={selectedClub} onBack={handleBackToHome} onSuccess={() => {
+    setSelectedClub(selectedClub); 
+    setShowJoinForm(false);
+    setJoinSuccess(true);
+    }
+    }
+  />;
   }
 
   if (joinSuccess && selectedClub) {
