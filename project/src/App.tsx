@@ -493,7 +493,7 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
                   <Star className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">{activity[0]}</h3>
-                <p className="text-sm text-gray-600">activity[1]</p>
+                <p className="text-sm text-gray-600">{activity[1]}</p>
               </div>
             ))}
           </div>
