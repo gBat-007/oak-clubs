@@ -469,24 +469,27 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
 </div>
 
             
-            <div className="relative">
-              <div className="aspect-w-16 aspect-h-12 rounded-3xl overflow-hidden shadow-2xl">
-                <img 
-                  src={club.image} 
-                  alt={club.name}
-                  className="w-full h-80 object-cover rounded-3xl"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-xl">
-                <div className="flex items-center">
-                  <Users className="w-6 h-6 text-gray-500 mr-3" />
-                  <div>
-                    <p className="text-2xl font-bold text-gray-900">{club.members}</p>
-                    <p className="text-sm text-gray-600">Active Members</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div>
+  <div className="relative">
+    <div className="aspect-w-16 aspect-h-12 rounded-3xl overflow-hidden shadow-2xl">
+      <img 
+        src={club.image} 
+        alt={club.name}
+        className="w-full h-80 object-cover rounded-3xl"
+      />
+    </div>
+    <div className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-xl">
+      <div className="flex items-center">
+        <Users className="w-6 h-6 text-gray-500 mr-3" />
+        <div>
+          <p className="text-2xl font-bold text-gray-900">{club.members}</p>
+          <p className="text-sm text-gray-600">Active Members</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
           </div>
         </div>
       </section>
