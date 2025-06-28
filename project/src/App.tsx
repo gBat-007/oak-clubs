@@ -240,7 +240,7 @@ function App() {
             <span className="bg-gradient-to-r from-[#44c3cf] to-[#702a82] bg-clip-text text-transparent"> Clubs</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Explore exciting opportunities, meet like-minded students, and develop new skills through our vibrant club community at Oakridge International School.
+            Explore exciting opportunities, meet like-minded students, and develop new skills through our vibrant club community at Oakridge International School, Gachibowli.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
@@ -318,16 +318,13 @@ function App() {
                 className="inline-block hover:opacity-80 transition-opacity duration-200"
               >
                 <img 
-                  src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
+                  src="/oak-with-text-logo.png" 
                   alt="Oakridge International School" 
                   className="h-12 w-auto mx-auto md:mx-0 mb-4"
                 />
               </a>
-             <p className="text-gray-600 mb-4">
-                Oakridge International School - Nurturing Global Citizens
-              </p>
             </div>
-            
+
             <div className="text-center">
               <h3 className="font-semibold text-gray-900 mb-4">Quick Links</h3>
               <div className="space-y-2">
@@ -357,7 +354,7 @@ function App() {
               <div className="space-y-2 text-gray-600">
                 <p className="flex items-center justify-center md:justify-end">
                   <Mail className="w-4 h-4 mr-2" />
-                  <a href="mailto:gautam_bansal@oakridge.in">gautam_bansal@oakridge.in</a>
+                  <a href="mailto:clubs@oakridge.in">clubs@oakridge.in</a>
                 </p>
                 <button
                   onClick={() => handleContactClick()}
@@ -566,7 +563,7 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
                 onClick={() => window.location.href = `mailto:${club.leadership_mail}?subject=${encodeURIComponent(`Question about ${club.name}`)}`}
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-xl font-semibold hover:bg-white transition-all duration-300 border border-gray-200"
               >
-                Contact Advisor
+                Contact Leader
               </button>
             </div>
           </div>
@@ -950,7 +947,7 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
                 }}
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-xl font-semibold hover:bg-white transition-all duration-300 border border-gray-200"
               >
-                Contact Advisor
+                Contact Leader
               </button>
             </div>
           </div>
