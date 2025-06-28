@@ -129,7 +129,7 @@ function App() {
   }
 
   if (selectedClub) {
-    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)} onContact={handleContactClick} />;
+    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)}/>;
   }
 
   return (
@@ -151,7 +151,7 @@ function App() {
                   className="h-12 w-auto"
                 />
               </a>
-              <div className="hidden sm:block">
+             <div className="hidden sm:block">
                 <h1 className="text-2xl font-bold text-gray-900">Oakridge Clubs</h1>
                 <p className="text-sm text-gray-600">Student Club Directory</p>
               </div>
@@ -305,7 +305,7 @@ function App() {
                   className="h-12 w-auto mx-auto md:mx-0 mb-4"
                 />
               </a>
-              <p className="text-gray-600 mb-4">
+             <p className="text-gray-600 mb-4">
                 Oakridge International School - Nurturing Global Citizens
               </p>
             </div>
@@ -438,7 +438,7 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
                 className="h-12 w-auto"
               />
             </a>
-            <div>
+           <div>
               <h1 className="text-xl font-bold text-gray-900">{club.name}</h1>
               <p className="text-sm text-gray-600">Club Details</p>
             </div>
@@ -545,7 +545,7 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
                 Join Club
               </button>
               <button 
-                onClick={onContact}
+                onClick={() => window.location.href = `mailto:${club.leadership_mail}?subject=${encodeURIComponent(`Question about ${club.name}`)}`}
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-xl font-semibold hover:bg-white transition-all duration-300 border border-gray-200"
               >
                 Contact Advisor

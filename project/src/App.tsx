@@ -16,7 +16,6 @@ interface Club {
   location: string;
   members: number;
   advisor: string;
-  leadership_mail: string;
   leadership: string;
   activities: string[][];
   nextMeeting: string;
@@ -47,7 +46,6 @@ const clubs: Club[] = [
     location: 'Hybrid - Online every Wednesday, except offline in room 303 first Wednesday of each month',
     members: 24,
     advisor: 'CS Teacher Rama B',
-    leadership_mail: 'gautam_bansal@oakridge.in',
     leadership: 'Gautam Bansal, Gaurav Kshirsagar, and Ritesh Marupudi',
     activities: [
       ['Hackathons & Coding Competitions','Enjoy coding competitions across a range of platforms and languages, with AI allowed and encouraged!'],
@@ -141,12 +139,19 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
-              <img 
-                src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
-                alt="Oakridge International School" 
-                className="h-12 w-auto"
-              />
-              <div className="hidden sm:block">
+              <a 
+                href="https://oakridge.in" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity duration-200"
+              >
+                <img 
+                  src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
+                  alt="Oakridge International School" 
+                  className="h-12 w-auto"
+                />
+              </a>
+             <div className="hidden sm:block">
                 <h1 className="text-2xl font-bold text-gray-900">Oakridge Clubs</h1>
                 <p className="text-sm text-gray-600">Student Club Directory</p>
               </div>
@@ -288,12 +293,19 @@ function App() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center md:text-left">
-              <img 
-                src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
-                alt="Oakridge International School" 
-                className="h-12 w-auto mx-auto md:mx-0 mb-4"
-              />
-              <p className="text-gray-600 mb-4">
+              <a 
+                href="https://oakridge.in" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block hover:opacity-80 transition-opacity duration-200"
+              >
+                <img 
+                  src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
+                  alt="Oakridge International School" 
+                  className="h-12 w-auto mx-auto md:mx-0 mb-4"
+                />
+              </a>
+             <p className="text-gray-600 mb-4">
                 Oakridge International School - Nurturing Global Citizens
               </p>
             </div>
@@ -414,12 +426,19 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
             >
               <ChevronRight className="w-6 h-6 rotate-180" />
             </button>
-            <img 
-              src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
-              alt="Oakridge International School" 
-              className="h-12 w-auto mr-4"
-            />
-            <div>
+            <a 
+              href="https://oakridge.in" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity duration-200 mr-4"
+            >
+              <img 
+                src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
+                alt="Oakridge International School" 
+                className="h-12 w-auto"
+              />
+            </a>
+           <div>
               <h1 className="text-xl font-bold text-gray-900">{club.name}</h1>
               <p className="text-sm text-gray-600">Club Details</p>
             </div>
@@ -610,11 +629,18 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
             >
               <ChevronRight className="w-6 h-6 rotate-180" />
             </button>
-            <img 
-              src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
-              alt="Oakridge International School" 
-              className="h-12 w-auto mr-4"
-            />
+            <a 
+              href="https://oakridge.in" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity duration-200 mr-4"
+            >
+              <img 
+                src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
+                alt="Oakridge International School" 
+                className="h-12 w-auto"
+              />
+            </a>
             <div>
               <h1 className="text-xl font-bold text-gray-900">Join {club.name}</h1>
               <p className="text-sm text-gray-600">Membership Application</p>
@@ -819,11 +845,18 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
             >
               <ChevronRight className="w-6 h-6 rotate-180" />
             </button>
-            <img 
-              src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
-              alt="Oakridge International School" 
-              className="h-12 w-auto mr-4"
-            />
+            <a 
+              href="https://oakridge.in" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity duration-200 mr-4"
+            >
+              <img 
+                src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
+                alt="Oakridge International School" 
+                className="h-12 w-auto"
+              />
+            </a>
             <div>
               <h1 className="text-xl font-bold text-gray-900">Application Submitted</h1>
               <p className="text-sm text-gray-600">Welcome to {club.name}!</p>
