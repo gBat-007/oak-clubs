@@ -7,15 +7,16 @@
     <title>Oakridge Clubs - Student Club Directory</title>
     <meta name="description" content="Discover and join amazing clubs at Oakridge International School. Explore TriDev coding club and Astrophiles astronomy club.">
   </head>
+     <!-- Add this hidden form for Netlify detection -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <input type="text" name="subject" />
+  <textarea name="message"></textarea>
+</form>
   <body>
     <div id="root"></div>
-    <!-- Hidden fallback for Netlify to detect the form -->
-    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="text" name="subject" />
-      <textarea name="message"></textarea>
-    </form>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
