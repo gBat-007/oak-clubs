@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Calendar, Clock, MapPin, Users, Code, Telescope, Menu, X, ChevronRight, Star, Zap, Mail, Phone, User, GraduationCap, CheckCircle} from 'lucide-react';
+import React, {useEffect, useState } from 'react';
+import { Calendar, Clock, MapPin, Users, Code, Telescope, Menu, X, ChevronRight, Star, Zap, Mail, Phone, User, IdBadge, GraduationCap, CheckCircle} from 'lucide-react';
 import { ContactModal } from './components/ContactModal';
 import { LearnMoreModal } from './components/LearnMoreModal';
 
@@ -37,7 +37,8 @@ const clubs: Club[] = [
   {
     id: 'tridev',
     name: 'TriDev',
-    description: 'Coding & Software Development Club',
+    focus: 'coding & app development',
+    description: 'Coding & App Development Club',
     fullDescription: 'TriDev is Oakridge\'s premier coding club where students explore the exciting world of software development. From web development to mobile apps, AI to game development, we cover it all.',
     icon: <Code className="w-8 h-8" />,
     color: 'from-[#44c3cf] to-[#702a82]',
@@ -61,6 +62,7 @@ const clubs: Club[] = [
   {
     id: 'astrophiles',
     name: 'Astrophiles',
+    focus: 'astrophysics, astronomy, and astrophotography',
     description: 'Astronomy & Space Science Club',
     fullDescription: 'Astrophiles brings together students passionate about astronomy, space exploration, and the mysteries of the universe. We observe celestial events, study cosmic phenomena, and dream of the stars.',
     icon: <Telescope className="w-8 h-8" />,
@@ -574,6 +576,24 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
   );
 }
 
+
+function JoinClubWrapper({ club, onBack }: { club: Club; onBack: () => void }) {
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === 'true' && params.get('club') === club.id) {
+      setShowSuccess(true);
+    }
+  }, [club.id]);
+
+  return showSuccess ? (
+    <JoinSuccess club={club} onBack={onBack} />
+  ) : (
+    <JoinClubWrapper club={club} onBack={onBack} />
+  );
+}
+
 function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void; onSuccess: () => void }) {
   const [formData, setFormData] = useState<JoinFormData>({
     firstName: '',
@@ -748,11 +768,32 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                 </div>
                 {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
               </div>
+              <div>
+              <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-2">
+                Student ID *
+              </label>
+              <div className="relative">
+                <IdBadge className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  id="studentId"
+                  name="studentId"
+                  value={formData.studentId}
+                  onChange={(e) => handleInputChange('studentId', e.target.value)}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
+                    errors.studentId ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  placeholder="Enter your student ID"
+                  required
+                />
+              </div>
+              {errors.studentId && <p className="mt-1 text-sm text-red-600">{errors.studentId}</p>}
+            </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number *
+                    Phone Number With Whatsapp *
                   </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -810,7 +851,7 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                   onChange={(e) => handleInputChange('experience', e.target.value)}
                   rows={3}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300"
-                  placeholder={`Tell us about any previous experience related to ${club.name.toLowerCase()}...`}
+                  placeholder={`Tell us about any previous experience related to ${club.focus}...`}
                 />
               </div>
 
@@ -827,7 +868,7 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                   className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
                     errors.motivation ? 'border-red-500' : 'border-gray-300'
                   }`}
-                  placeholder="Share your motivation and what you hope to achieve..."
+                  placeholder= {`Share your motivation and what you hope to achieve by joining the ${club.name} Club...`}
                   required
                 />
                 {errors.motivation && <p className="mt-1 text-sm text-red-600">{errors.motivation}</p>}
