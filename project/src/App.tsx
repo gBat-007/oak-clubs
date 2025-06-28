@@ -939,7 +939,7 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
             </a>
             <div>
               <h1 className="text-xl font-bold text-gray-900">Application Submitted</h1>
-              <p className="text-sm text-gray-600">Welcome to {club.name}!</p>
+              <p className="text-sm text-gray-600">Welcome to the {club.name} Club!</p>
             </div>
           </div>
         </div>
@@ -965,19 +965,19 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
                   <div className="w-6 h-6 bg-[#44c3cf] rounded-full flex items-center justify-center mr-3 mt-0.5">
                     <span className="text-white text-sm font-bold">1</span>
                   </div>
-                  <p className="text-gray-700">Our club advisor will review your application within 2-3 business days</p>
+                  <p className="text-gray-700">The club leadership will review your application within 2-3 business days.</p>
                 </div>
                 <div className="flex items-start">
                   <div className="w-6 h-6 bg-[#702a82] rounded-full flex items-center justify-center mr-3 mt-0.5">
                     <span className="text-white text-sm font-bold">2</span>
                   </div>
-                  <p className="text-gray-700">You'll receive an email confirmation with next steps</p>
+                  <p className="text-gray-700">You'll receive an email confirmation with next steps.</p>
                 </div>
                 <div className="flex items-start">
                   <div className="w-6 h-6 bg-[#ffcc08] rounded-full flex items-center justify-center mr-3 mt-0.5">
                     <span className="text-white text-sm font-bold">3</span>
                   </div>
-                  <p className="text-gray-700">Attend your first meeting on {club.meetingDay} at {club.meetingTime}</p>
+                  <p className="text-gray-700">Attend your first meeting next {club.meetingDay.slice(0,-1)} at {club.meetingTime}!</p>
                 </div>
               </div>
             </div>
@@ -990,10 +990,7 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
                 Back to Clubs
               </button>
               <button 
-                onClick={() => {
-                  // This would open a contact modal in a real implementation
-                  alert(`Contact ${club.advisor} at ${club.advisor.toLowerCase().replace(' ', '.')}@oakridge.in`);
-                }}
+                onClick={() => window.location.href = `mailto:${club.leadership_mail}?subject=${encodeURIComponent(`Question about ${club.name}`)}`}
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-xl font-semibold hover:bg-white transition-all duration-300 border border-gray-200"
               >
                 Contact Leadership
