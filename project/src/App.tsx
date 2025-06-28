@@ -120,6 +120,24 @@ function App() {
     setShowLearnMoreModal(true);
   };
 
+  // Check URL parameters for success state
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      const clubId = urlParams.get('club');
+      if (clubId) {
+        const club = clubs.find(c => c.id === clubId);
+        if (club) {
+          setSelectedClub(club);
+          setJoinSuccess(true);
+          setShowJoinForm(false);
+          // Clean up URL
+          window.history.replaceState({}, '', window.location.pathname);
+        }
+      }
+    }
+  }, []);
+
   if (showJoinForm && selectedClub) {
     return <JoinForm club={selectedClub} onBack={handleBackToHome} onSuccess={() => setJoinSuccess(true)} />;
   }
@@ -589,25 +607,15 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!validateForm()) {
+      e.preventDefault(); // Stop submission if invalid
+      return;
+    }
 
     setIsSubmitting(true);
-    
-    // Simulate form submission with realistic delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Log form data (in a real app, this would be sent to a server)
-    console.log('Club Application Submitted:', {
-      club: club.name,
-      applicant: formData,
-      timestamp: new Date().toISOString()
-    });
-    
-    setIsSubmitting(false);
-    onSuccess();
+    // Let Netlify submit the form natively via POST
+    // The form will redirect to success page with club parameter
   };
 
   const handleInputChange = (field: keyof JoinFormData, value: string) => {
@@ -661,7 +669,20 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
               <p className="text-gray-600">Fill out the form below to become a member of our club</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form 
+              name="club-application"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              action={`/?success=true&club=${club.id}`}
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+            >
+              {/* Netlify Hidden Fields */}
+              <input type="hidden" name="form-name" value="club-application" />
+              <input type="hidden" name="bot-field" />
+              <input type="hidden" name="club" value={club.name} />
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -672,12 +693,14 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                     <input
                       type="text"
                       id="firstName"
+                      name="firstName"
                       value={formData.firstName}
                       onChange={(e) => handleInputChange('firstName', e.target.value)}
                       className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
                         errors.firstName ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="Enter your first name"
+                      required
                     />
                   </div>
                   {errors.firstName && <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>}
@@ -692,12 +715,14 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                     <input
                       type="text"
                       id="lastName"
+                      name="lastName"
                       value={formData.lastName}
                       onChange={(e) => handleInputChange('lastName', e.target.value)}
                       className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
                         errors.lastName ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="Enter your last name"
+                      required
                     />
                   </div>
                   {errors.lastName && <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>}
@@ -713,12 +738,14 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Enter your email address"
+                    required
                   />
                 </div>
                 {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
@@ -734,12 +761,14 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                     <input
                       type="tel"
                       id="phone"
+                      name="phone"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
                       className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
                         errors.phone ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="Enter your phone number"
+                      required
                     />
                   </div>
                   {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
@@ -753,11 +782,13 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                     <GraduationCap className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                     <select
                       id="grade"
+                      name="grade"
                       value={formData.grade}
                       onChange={(e) => handleInputChange('grade', e.target.value)}
                       className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
                         errors.grade ? 'border-red-500' : 'border-gray-300'
                       }`}
+                      required
                     >
                       <option value="">Select your grade</option>
                       <option value="9">Grade 9</option>
@@ -776,6 +807,7 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                 </label>
                 <textarea
                   id="experience"
+                  name="experience"
                   value={formData.experience}
                   onChange={(e) => handleInputChange('experience', e.target.value)}
                   rows={3}
@@ -790,6 +822,7 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                 </label>
                 <textarea
                   id="motivation"
+                  name="motivation"
                   value={formData.motivation}
                   onChange={(e) => handleInputChange('motivation', e.target.value)}
                   rows={4}
@@ -797,6 +830,7 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                     errors.motivation ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Share your motivation and what you hope to achieve..."
+                  required
                 />
                 {errors.motivation && <p className="mt-1 text-sm text-red-600">{errors.motivation}</p>}
               </div>
