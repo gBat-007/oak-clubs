@@ -17,7 +17,6 @@ interface Club {
   members: number;
   advisor: string;
   leadership: string;
-  leadership_mail: string;
   activities: string[][];
   nextMeeting: string;
   image: string;
@@ -48,7 +47,6 @@ const clubs: Club[] = [
     members: 24,
     advisor: 'CS Teacher Rama B',
     leadership: 'Gautam Bansal, Gaurav Kshirsagar, and Ritesh Marupudi',
-    leadership_mail: "gautam_bansal@oakridge.in",
     activities: [
       ['Hackathons & Coding Competitions','Enjoy coding competitions across a range of platforms and languages, with AI allowed and encouraged!'],
       ['Open Source Contributions','Let\'s put our code out there for the world to see!'],
@@ -73,6 +71,7 @@ const clubs: Club[] = [
     advisor: 'Physics Teacher Rajesh Javvadi',
     leadership: 'Yash Xavier and Roshan Churukanti',
     leadership_mail: 'yash_xavier@oakridge.in',
+    leadership: 'Yash Xavier',
     activities: [
   ['Stargazing Sessions', 'Nighttime events where participants observe stars, planets, and constellations with the naked eye or telescopes.'],
   ['Telescope Workshops', 'Hands-on sessions to learn how to set up, use, and maintain different types of telescopes.'],
@@ -130,7 +129,7 @@ function App() {
   }
 
   if (selectedClub) {
-    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)} />;
+    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)} onContact={handleContactClick} />;
   }
 
   return (
@@ -431,64 +430,51 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-  <div className={`inline-flex items-center p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white mb-6`}>
-    {club.icon}
-  </div>
-  <h1 className="text-5xl font-bold text-gray-900 mb-6">{club.name}</h1>
-  <p className="text-xl text-gray-600 mb-8 leading-relaxed">{club.fullDescription}</p>
-
-  {/* Leadership Card */}
-  <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20 mb-6">
-    <div className="flex items-center mb-3">
-      <UserGroup className="w-5 h-5 text-gray-500 mr-3" />
-      <span className="font-semibold text-gray-900">Club Leadership Team</span>
-    </div>
-    <p className="text-gray-700">{club.leadership}</p>
-  </div>
-
-  {/* Info Grid */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-    <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-      <div className="flex items-center mb-3">
-        <Calendar className="w-5 h-5 text-gray-500 mr-3" />
-        <span className="font-semibold text-gray-900">Next Meeting</span>
-      </div>
-      <p className="text-gray-700">{club.nextMeeting}</p>
-      <p className="text-sm text-gray-600 mt-1">{club.meetingDay} • {club.meetingTime}</p>
-    </div>
-
-    <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-      <div className="flex items-center mb-3">
-        <MapPin className="w-5 h-5 text-gray-500 mr-3" />
-        <span className="font-semibold text-gray-900">Location</span>
-      </div>
-      <p className="text-gray-700">{club.location}</p>
-      <p className="text-sm text-gray-600 mt-1">Advisor: {club.advisor}</p>
-    </div>
-  </div>
-</div>
-
+                <div className={`inline-flex items-center p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white mb-6`}>
+                {club.icon}
+              </div>
+              <h1 className="text-5xl font-bold text-gray-900 mb-6">{club.name}</h1>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">{club.fullDescription}</p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                  <div className="flex items-center mb-3">
+                    <Calendar className="w-5 h-5 text-gray-500 mr-3" />
+                    <span className="font-semibold text-gray-900">Next Meeting</span>
+                  </div>
+                  <p className="text-gray-700">{club.nextMeeting}</p>
+                  <p className="text-sm text-gray-600 mt-1">{club.meetingDay} • {club.meetingTime}</p>
+                </div>
+                
+                <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                  <div className="flex items-center mb-3">
+                    <MapPin className="w-5 h-5 text-gray-500 mr-3" />
+                    <span className="font-semibold text-gray-900">Location</span>
+                  </div>
+                  <p className="text-gray-700">{club.location}</p>
+                  <p className="text-sm text-gray-600 mt-1">Advisor: {club.advisor}</p>
+                </div>
+              </div>
+            </div>
             
-            <div>
-  <div className="relative">
-    <div className="aspect-w-16 aspect-h-12 rounded-3xl overflow-hidden shadow-2xl">
-      <img 
-        src={club.image} 
-        alt={club.name}
-        className="w-full h-80 object-cover rounded-3xl"
-      />
-    </div>
-    <div className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-xl">
-      <div className="flex items-center">
-        <Users className="w-6 h-6 text-gray-500 mr-3" />
-        <div>
-          <p className="text-2xl font-bold text-gray-900">{club.members}</p>
-          <p className="text-sm text-gray-600">Active Members</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<div className="relative">
+              <div className="aspect-w-16 aspect-h-12 rounded-3xl overflow-hidden shadow-2xl">
+                <img 
+                  src={club.image} 
+                  alt={club.name}
+                  className="w-full h-80 object-cover rounded-3xl"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-xl">
+                <div className="flex items-center">
+                  <Users className="w-6 h-6 text-gray-500 mr-3" />
+                  <div>
+                    <p className="text-2xl font-bold text-gray-900">{club.members}</p>
+                    <p className="text-sm text-gray-600">Active Members</p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -529,7 +515,7 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
                 Join Club
               </button>
               <button 
-                onClick={() => window.location.href = `mailto:${club.leadership_mail}?subject=${encodeURIComponent(`Question about ${club.name}`)}`}
+                onClick={onContact}
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-xl font-semibold hover:bg-white transition-all duration-300 border border-gray-200"
               >
                 Contact Advisor
