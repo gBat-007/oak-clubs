@@ -127,7 +127,7 @@ function App() {
   }
 
   if (selectedClub) {
-    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)} onContact={() => ()} />;
+    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)} onContact={handleContactClick} />;
   }
 
   return (
