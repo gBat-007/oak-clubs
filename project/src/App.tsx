@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, MapPin, Users, Code, Telescope, Menu, X, ChevronRight, Star, Zap, Mail, Phone, User, GraduationCap, CheckCircle } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Code, Telescope, Menu, X, ChevronRight, Star, Zap, Mail, Phone, User, GraduationCap, CheckCircle} from 'lucide-react';
 import { ContactModal } from './components/ContactModal';
 import { LearnMoreModal } from './components/LearnMoreModal';
 
@@ -437,24 +437,33 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">{club.fullDescription}</p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                  <div className="flex items-center mb-3">
-                    <Calendar className="w-5 h-5 text-gray-500 mr-3" />
-                    <span className="font-semibold text-gray-900">Next Meeting</span>
-                  </div>
-                  <p className="text-gray-700">{club.nextMeeting}</p>
-                  <p className="text-sm text-gray-600 mt-1">{club.meetingDay} • {club.meetingTime}</p>
-                </div>
-                
-                <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                  <div className="flex items-center mb-3">
-                    <MapPin className="w-5 h-5 text-gray-500 mr-3" />
-                    <span className="font-semibold text-gray-900">Location</span>
-                  </div>
-                  <p className="text-gray-700">{club.location}</p>
-                  <p className="text-sm text-gray-600 mt-1">Advisor: {club.advisor}</p>
-                </div>
-              </div>
+  <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+    <div className="flex items-center mb-3">
+      <Calendar className="w-5 h-5 text-gray-500 mr-3" />
+      <span className="font-semibold text-gray-900">Next Meeting</span>
+    </div>
+    <p className="text-gray-700">{club.nextMeeting}</p>
+    <p className="text-sm text-gray-600 mt-1">{club.meetingDay} • {club.meetingTime}</p>
+  </div>
+
+  <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+    <div className="flex items-center mb-3">
+      <MapPin className="w-5 h-5 text-gray-500 mr-3" />
+      <span className="font-semibold text-gray-900">Location</span>
+    </div>
+    <p className="text-gray-700">{club.location}</p>
+    <p className="text-sm text-gray-600 mt-1">Advisor: {club.advisor}</p>
+  </div>
+
+  <div className="sm:col-span-2 bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+    <div className="flex items-center mb-3">
+      <Users className="w-5 h-5 text-gray-500 mr-3" />
+      <span className="font-semibold text-gray-900">Club Leadership Team</span>
+    </div>
+    <p className="text-gray-700">{club.leadership}</p>
+  </div>
+</div>
+
             </div>
             
 <div className="relative">
