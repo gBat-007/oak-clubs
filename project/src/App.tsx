@@ -129,7 +129,7 @@ function App() {
   }
 
   if (selectedClub) {
-    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)} onContact={handleContactClick} />;
+    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)}/>;
   }
 
   return (
@@ -524,7 +524,7 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
                 Join Club
               </button>
               <button 
-                onClick={onContact}
+                onClick={() => window.location.href = `mailto:${club.leadership_mail}?subject=${encodeURIComponent(`Question about ${club.name}`)}`}
                 className="px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-xl font-semibold hover:bg-white transition-all duration-300 border border-gray-200"
               >
                 Contact Advisor
