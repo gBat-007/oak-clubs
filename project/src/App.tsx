@@ -16,7 +16,8 @@ interface Club {
   location: string;
   members: number;
   advisor: string;
-  activities: string[];
+  leadership: string;
+  activities: string[][];
   nextMeeting: string;
   image: string;
 }
@@ -42,15 +43,15 @@ const clubs: Club[] = [
     gradient: 'bg-gradient-to-br from-[#44c3cf]/10 to-[#702a82]/10',
     meetingTime: '3:30 PM - 5:00 PM',
     meetingDay: 'Wednesdays',
-    location: 'Computer Lab A',
+    location: 'Hybrid - Online every Wednesday, except offline in room 303 first Wednesday of each month',
     members: 24,
-    advisor: 'Ms. Sarah Chen',
+    advisor: 'CS Teacher Rama B',
+    leadership: 'Gautam Bansal, Gaurav Kshirsagar, and Ritesh Marupudi',
     activities: [
-      'Web Development Workshops',
-      'Hackathons & Coding Competitions',
-      'Open Source Contributions',
-      'Tech Talk Sessions',
-      'Project Showcases'
+      ['Hackathons & Coding Competitions','Enjoy coding competitions across a range of platforms and languages, with AI allowed and encouraged!'],
+      ['Open Source Contributions','Let\'s put our code out there for the world to see!'],
+      ['Tech Talk Sessions','We have professional developers, and experienced high schoolers, who come and talk to inspire us regarding software development!'],
+      ['Project Showcases','Everyone is encouraged to share and showcase their projects in our special project showcases!']
     ],
     nextMeeting: 'January 17, 2025',
     image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -65,16 +66,18 @@ const clubs: Club[] = [
     gradient: 'bg-gradient-to-br from-[#702a82]/10 to-[#44c3cf]/10',
     meetingTime: '4:00 PM - 5:30 PM',
     meetingDay: 'Fridays',
-    location: 'Science Observatory',
+    location: 'Online',
     members: 18,
-    advisor: 'Dr. Michael Rodriguez',
+    advisor: 'Physics Teacher Rajesh Javvadi',
+    leadership: 'Yash Xavier',
     activities: [
-      'Stargazing Sessions',
-      'Telescope Workshops',
-      'Astrophotography',
-      'Space Mission Analysis',
-      'Planetarium Visits'
-    ],
+  ['Stargazing Sessions', 'Nighttime events where participants observe stars, planets, and constellations with the naked eye or telescopes.'],
+  ['Telescope Workshops', 'Hands-on sessions to learn how to set up, use, and maintain different types of telescopes.'],
+  ['Astrophotography', 'Workshops or sessions focused on capturing images of celestial objects using cameras and telescopes.'],
+  ['Space Mission Analysis', 'Interactive discussions or activities analyzing real or fictional space missions and their scientific goals.'],
+  ['Planetarium Visits', 'Trips to a planetarium to experience immersive sky simulations and learn about astronomy in an engaging way.']
+  ]
+  ,
     nextMeeting: 'January 19, 2025',
     image: 'https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&w=800'
   }
@@ -106,8 +109,8 @@ function App() {
     setJoinSuccess(false);
   };
 
-  const handleContactClick = (club?: Club) => {
-    setContactClub(club || null);
+  const handleContactClick = () => {
+    setContactClub();
     setShowContactModal(true);
   };
 
@@ -124,7 +127,7 @@ function App() {
   }
 
   if (selectedClub) {
-    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)} onContact={() => handleContactClick(selectedClub)} />;
+    return <ClubDetail club={selectedClub} onBack={handleBackToHome} onJoin={() => handleJoinClick(selectedClub)} onContact={() => ()} />;
   }
 
   return (
@@ -489,8 +492,8 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
                 <div className={`w-12 h-12 bg-gradient-to-br ${club.color} rounded-xl flex items-center justify-center mb-4`}>
                   <Star className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{activity}</h3>
-                <p className="text-sm text-gray-600">Regular club activity that helps members develop skills and engage with the community.</p>
+                <h3 className="font-semibold text-gray-900 mb-2">{activity[0]}</h3>
+                <p className="text-sm text-gray-600">activity[1]</p>
               </div>
             ))}
           </div>
