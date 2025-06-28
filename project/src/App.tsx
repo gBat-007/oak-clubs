@@ -71,7 +71,7 @@ const clubs: Club[] = [
     location: 'Online',
     members: 18,
     advisor: 'Physics Teacher Rajesh Javvadi',
-    leadership: 'Yash Xavier',
+    leadership: 'Yash Xavier and Roshan Churukanti',
     leadership_mail: 'yash_xavier@oakridge.in',
     activities: [
   ['Stargazing Sessions', 'Nighttime events where participants observe stars, planets, and constellations with the naked eye or telescopes.'],
@@ -325,12 +325,8 @@ function App() {
               <h3 className="font-semibold text-gray-900 mb-4">Get in Touch</h3>
               <div className="space-y-2 text-gray-600">
                 <p className="flex items-center justify-center md:justify-end">
-                  <Phone className="w-4 h-4 mr-2" />
-                  +91 80 2562 5888
-                </p>
-                <p className="flex items-center justify-center md:justify-end">
                   <Mail className="w-4 h-4 mr-2" />
-                  clubs@oakridge.in
+                  <a href="mailto:gautam_bansal@oakridge.in">gautam_bansal@oakridge.in</a>
                 </p>
                 <button
                   onClick={() => handleContactClick()}
@@ -435,32 +431,43 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className={`inline-flex items-center p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white mb-6`}>
-                {club.icon}
-              </div>
-              <h1 className="text-5xl font-bold text-gray-900 mb-6">{club.name}</h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">{club.fullDescription}</p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                  <div className="flex items-center mb-3">
-                    <Calendar className="w-5 h-5 text-gray-500 mr-3" />
-                    <span className="font-semibold text-gray-900">Next Meeting</span>
-                  </div>
-                  <p className="text-gray-700">{club.nextMeeting}</p>
-                  <p className="text-sm text-gray-600 mt-1">{club.meetingDay} • {club.meetingTime}</p>
-                </div>
-                
-                <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                  <div className="flex items-center mb-3">
-                    <MapPin className="w-5 h-5 text-gray-500 mr-3" />
-                    <span className="font-semibold text-gray-900">Location</span>
-                  </div>
-                  <p className="text-gray-700">{club.location}</p>
-                  <p className="text-sm text-gray-600 mt-1">Advisor: {club.advisor}</p>
-                </div>
-              </div>
-            </div>
+  <div className={`inline-flex items-center p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white mb-6`}>
+    {club.icon}
+  </div>
+  <h1 className="text-5xl font-bold text-gray-900 mb-6">{club.name}</h1>
+  <p className="text-xl text-gray-600 mb-8 leading-relaxed">{club.fullDescription}</p>
+
+  {/* Leadership Card */}
+  <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20 mb-6">
+    <div className="flex items-center mb-3">
+      <UserGroup className="w-5 h-5 text-gray-500 mr-3" />
+      <span className="font-semibold text-gray-900">Club Leadership Team</span>
+    </div>
+    <p className="text-gray-700">{club.leadership}</p>
+  </div>
+
+  {/* Info Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+      <div className="flex items-center mb-3">
+        <Calendar className="w-5 h-5 text-gray-500 mr-3" />
+        <span className="font-semibold text-gray-900">Next Meeting</span>
+      </div>
+      <p className="text-gray-700">{club.nextMeeting}</p>
+      <p className="text-sm text-gray-600 mt-1">{club.meetingDay} • {club.meetingTime}</p>
+    </div>
+
+    <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+      <div className="flex items-center mb-3">
+        <MapPin className="w-5 h-5 text-gray-500 mr-3" />
+        <span className="font-semibold text-gray-900">Location</span>
+      </div>
+      <p className="text-gray-700">{club.location}</p>
+      <p className="text-sm text-gray-600 mt-1">Advisor: {club.advisor}</p>
+    </div>
+  </div>
+</div>
+
             
             <div className="relative">
               <div className="aspect-w-16 aspect-h-12 rounded-3xl overflow-hidden shadow-2xl">
