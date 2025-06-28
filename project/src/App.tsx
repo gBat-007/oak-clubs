@@ -29,6 +29,7 @@ interface JoinFormData {
   email: string;
   phone: string;
   grade: string;
+  studentId: string;
   experience: string;
   motivation: string;
 }
@@ -617,6 +618,7 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
+    if (!formData.studentId.trim()) newErrors.studentId = 'Student ID is required';
     if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
     if (!formData.grade) newErrors.grade = 'Please select your grade';
     if (!formData.motivation.trim()) newErrors.motivation = 'Please tell us why you want to join';
@@ -699,7 +701,7 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
               {/* Netlify Hidden Fields */}
               <input type="hidden" name="form-name" value="club-application" />
               <input type="hidden" name="bot-field" />
-              <input type="hidden" name="club" value={club.name} />
+              <input type="hidden" name="club" value={club.id} />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
