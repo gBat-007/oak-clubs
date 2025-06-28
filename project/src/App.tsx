@@ -124,6 +124,23 @@ function App() {
     setShowLearnMoreModal(true);
   };
 
+  useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+  const clubId = params.get('club');
+  const isSuccess = params.get('success') === 'true';
+
+  if (isSuccess && clubId) {
+    const matchedClub = clubs.find(c => c.id === clubId);
+    if (matchedClub) {
+      setSelectedClub(matchedClub);
+      setShowJoinForm(false);
+      setJoinSuccess(true);
+    }
+    // Clear the URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+}, []);
+
   // Check URL parameters for success state
   
   if (showJoinForm && selectedClub) {
@@ -558,24 +575,6 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
         </div>
       </section>
     </div>
-  );
-}
-
-
-function JoinClubWrapper({ club, onBack }: { club: Club; onBack: () => void }) {
-  const [showSuccess, setShowSuccess] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('success') === 'true' && params.get('club') === club.id) {
-      setShowSuccess(true);
-    }
-  }, [club.id]);
-
-  return showSuccess ? (
-    <JoinSuccess club={club} onBack={onBack} />
-  ) : (
-    <JoinClubWrapper club={club} onBack={onBack} />
   );
 }
 
