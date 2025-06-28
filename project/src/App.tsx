@@ -17,6 +17,7 @@ interface Club {
   members: number;
   advisor: string;
   leadership: string;
+  leadership_mail: string;
   activities: string[][];
   nextMeeting: string;
   image: string;
@@ -46,6 +47,7 @@ const clubs: Club[] = [
     location: 'Hybrid - Online every Wednesday, except offline in room 303 first Wednesday of each month',
     members: 24,
     advisor: 'CS Teacher Rama B',
+    leadership_mail: 'gautam_bansal@oakridge.in',
     leadership: 'Gautam Bansal, Gaurav Kshirsagar, and Ritesh Marupudi',
     activities: [
       ['Hackathons & Coding Competitions','Enjoy coding competitions across a range of platforms and languages, with AI allowed and encouraged!'],
@@ -71,7 +73,6 @@ const clubs: Club[] = [
     advisor: 'Physics Teacher Rajesh Javvadi',
     leadership: 'Yash Xavier and Roshan Churukanti',
     leadership_mail: 'yash_xavier@oakridge.in',
-    leadership: 'Yash Xavier',
     activities: [
   ['Stargazing Sessions', 'Nighttime events where participants observe stars, planets, and constellations with the naked eye or telescopes.'],
   ['Telescope Workshops', 'Hands-on sessions to learn how to set up, use, and maintain different types of telescopes.'],
@@ -267,7 +268,7 @@ function App() {
               <div className="w-16 h-16 bg-gradient-to-br from-[#44c3cf] to-[#702a82] rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-2">42+</h3>
+              <h3 className="text-3xl font-bold text-gray-900 mb-2">40+</h3>
               <p className="text-gray-600">Active Members</p>
             </div>
             <div className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/20">
@@ -279,10 +280,10 @@ function App() {
             </div>
             <div className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/20">
               <div className="w-16 h-16 bg-gradient-to-br from-[#ffcc08] to-[#44c3cf] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-white" />
+                <GraduationCap className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-2">Weekly</h3>
-              <p className="text-gray-600">Meetings</p>
+              <h3 className="text-3xl font-bold text-gray-900 mb-2">4</h3>
+              <p className="text-gray-600">Grades Involved</p>
             </div>
           </div>
         </div>
