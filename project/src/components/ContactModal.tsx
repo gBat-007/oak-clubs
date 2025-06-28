@@ -49,29 +49,35 @@ export function ContactModal({ isOpen, onClose, club }: ContactModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    
-    // Simulate email sending
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
+    // Let Netlify handle the POST. Don't reset form here. Wait for redirect or confirmation.
+    // Just simulate delay to give UI feedback
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     setIsSubmitting(false);
     setIsSuccess(true);
-    
-    // Reset form after 3 seconds
+
+    // Optional auto-close
     setTimeout(() => {
       setIsSuccess(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({
+        name: '',
+        email: '',
+        subject: club ? `Inquiry about ${club.name}` : '',
+        message: ''
+      });
       onClose();
     }, 3000);
   };
 
   const handleInputChange = (field: keyof ContactFormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
@@ -123,79 +129,93 @@ export function ContactModal({ isOpen, onClose, club }: ContactModalProps) {
                 </div>
                 <div className="flex items-center">
                   <Clock className="w-4 h-4 mr-2" />
-                  <span>Response time: 24-48 hours</span>
+                  <span>Response time: 24–48 hours</span>
                 </div>
               </div>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            onSubmit={handleSubmit}
+            className="space-y-6"
+          >
+            {/* Netlify hidden fields */}
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="bot-field" />
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Your Name *
                 </label>
                 <input
                   type="text"
-                  id="name"
+                  name="name"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] transition-all duration-300 ${
                     errors.name ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter your full name"
+                  disabled={isSubmitting}
+                  required
                 />
                 {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email Address *
                 </label>
                 <input
                   type="email"
-                  id="email"
+                  name="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] transition-all duration-300 ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter your email address"
+                  disabled={isSubmitting}
+                  required
                 />
                 {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
               </div>
             </div>
 
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                Subject *
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
               <input
                 type="text"
-                id="subject"
+                name="subject"
                 value={formData.subject}
                 onChange={(e) => handleInputChange('subject', e.target.value)}
-                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
+                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] transition-all duration-300 ${
                   errors.subject ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="What is this regarding?"
+                disabled={isSubmitting}
+                required
               />
               {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject}</p>}
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                Message *
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
               <textarea
-                id="message"
+                name="message"
                 value={formData.message}
                 onChange={(e) => handleInputChange('message', e.target.value)}
                 rows={5}
-                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] focus:border-transparent transition-all duration-300 ${
+                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] transition-all duration-300 ${
                   errors.message ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="Type your message here..."
+                disabled={isSubmitting}
+                required
               />
               {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
             </div>
