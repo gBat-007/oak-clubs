@@ -1,5 +1,5 @@
 import React, {useEffect, useState } from 'react';
-import { Calendar, Clock, MapPin, Users, Code, Telescope, Menu, X, ChevronRight, Star, Zap, Mail, Phone, User, IdBadge, GraduationCap, CheckCircle} from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Code, Telescope, Menu, X, ChevronRight, Star, Zap, Mail, Phone, User, UserCircle, GraduationCap, CheckCircle} from 'lucide-react';
 import { ContactModal } from './components/ContactModal';
 import { LearnMoreModal } from './components/LearnMoreModal';
 
@@ -773,7 +773,7 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
                 Student ID *
               </label>
               <div className="relative">
-                <IdBadge className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <UserCircle className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
                   id="studentId"
