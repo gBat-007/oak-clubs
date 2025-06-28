@@ -23,10 +23,9 @@ export function ContactModal({ isOpen, onClose, club }: ContactModalProps) {
     name: '',
     email: '',
     subject: club ? `Inquiry about ${club.name}` : '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
 
   if (!isOpen) return null;
@@ -47,53 +46,23 @@ export function ContactModal({ isOpen, onClose, club }: ContactModalProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!validateForm()) {
+      e.preventDefault(); // Stop submission if invalid
+      return;
+    }
 
     setIsSubmitting(true);
-
-    // Let Netlify handle the POST. Don't reset form here. Wait for redirect or confirmation.
-    // Just simulate delay to give UI feedback
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    setIsSubmitting(false);
-    setIsSuccess(true);
-
-    // Optional auto-close
-    setTimeout(() => {
-      setIsSuccess(false);
-      setFormData({
-        name: '',
-        email: '',
-        subject: club ? `Inquiry about ${club.name}` : '',
-        message: ''
-      });
-      onClose();
-    }, 3000);
+    // Let Netlify submit the form natively via POST
+    // Netlify will redirect or show success if configured
   };
 
   const handleInputChange = (field: keyof ContactFormData, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: undefined }));
+      setErrors(prev => ({ ...prev, [field]: undefined }));
     }
   };
-
-  if (isSuccess) {
-    return (
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl">
-          <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle className="w-8 h-8 text-white" />
-          </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
-          <p className="text-gray-600">Thank you for contacting us. We'll get back to you soon.</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -139,28 +108,26 @@ export function ContactModal({ isOpen, onClose, club }: ContactModalProps) {
             name="contact"
             method="POST"
             data-netlify="true"
+            netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="space-y-6"
           >
-            {/* Netlify hidden fields */}
+            {/* Netlify Hidden Fields */}
             <input type="hidden" name="form-name" value="contact" />
             <input type="hidden" name="bot-field" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Name *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Your Name *</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
+                  onChange={e => handleInputChange('name', e.target.value)}
                   className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] transition-all duration-300 ${
                     errors.name ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter your full name"
-                  disabled={isSubmitting}
                   required
                 />
                 {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
@@ -174,12 +141,11 @@ export function ContactModal({ isOpen, onClose, club }: ContactModalProps) {
                   type="email"
                   name="email"
                   value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  onChange={e => handleInputChange('email', e.target.value)}
                   className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] transition-all duration-300 ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter your email address"
-                  disabled={isSubmitting}
                   required
                 />
                 {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
@@ -192,12 +158,11 @@ export function ContactModal({ isOpen, onClose, club }: ContactModalProps) {
                 type="text"
                 name="subject"
                 value={formData.subject}
-                onChange={(e) => handleInputChange('subject', e.target.value)}
+                onChange={e => handleInputChange('subject', e.target.value)}
                 className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] transition-all duration-300 ${
                   errors.subject ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="What is this regarding?"
-                disabled={isSubmitting}
                 required
               />
               {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject}</p>}
@@ -208,13 +173,12 @@ export function ContactModal({ isOpen, onClose, club }: ContactModalProps) {
               <textarea
                 name="message"
                 value={formData.message}
-                onChange={(e) => handleInputChange('message', e.target.value)}
+                onChange={e => handleInputChange('message', e.target.value)}
                 rows={5}
                 className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#44c3cf] transition-all duration-300 ${
                   errors.message ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="Type your message here..."
-                disabled={isSubmitting}
                 required
               />
               {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
