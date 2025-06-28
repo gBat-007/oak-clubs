@@ -16,6 +16,7 @@ interface Club {
   location: string;
   members: number;
   advisor: string;
+  leadership_mail: string;
   leadership: string;
   activities: string[][];
   nextMeeting: string;
@@ -46,6 +47,7 @@ const clubs: Club[] = [
     location: 'Hybrid - Online every Wednesday, except offline in room 303 first Wednesday of each month',
     members: 24,
     advisor: 'CS Teacher Rama B',
+    leadership_mail: 'gautam_bansal@oakridge.in',
     leadership: 'Gautam Bansal, Gaurav Kshirsagar, and Ritesh Marupudi',
     activities: [
       ['Hackathons & Coding Competitions','Enjoy coding competitions across a range of platforms and languages, with AI allowed and encouraged!'],
