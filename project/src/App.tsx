@@ -125,23 +125,7 @@ function App() {
   };
 
   // Check URL parameters for success state
-  React.useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
-      const clubId = urlParams.get('club');
-      if (clubId) {
-        const club = clubs.find(c => c.id === clubId);
-        if (club) {
-          setSelectedClub(club);
-          setJoinSuccess(true);
-          setShowJoinForm(false);
-          // Clean up URL
-          window.history.replaceState({}, '', window.location.pathname);
-        }
-      }
-    }
-  }, []);
-
+  
   if (showJoinForm && selectedClub) {
     return <JoinForm club={selectedClub} onBack={handleBackToHome} onSuccess={() => setJoinSuccess(true)} />;
   }
@@ -627,16 +611,33 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (!validateForm()) {
-      e.preventDefault(); // Stop submission if invalid
-      return;
-    }
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    setIsSubmitting(true);
-    // Let Netlify submit the form natively via POST
-    // The form will redirect to success page with club parameter
-  };
+  if (!validateForm()) return;
+
+  setIsSubmitting(true);
+
+  const form = e.currentTarget;
+  const formDataObj = new FormData(form);
+
+  try {
+    await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formDataObj as any).toString(),
+    });
+
+    // Instead of redirecting, just show success in React
+    onSuccess();
+  } catch (error) {
+    alert("Submission failed. Please try again.");
+    console.error(error);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const handleInputChange = (field: keyof JoinFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -694,7 +695,6 @@ function JoinForm({ club, onBack, onSuccess }: { club: Club; onBack: () => void;
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
-              action={`/?success=true&club=${club.id}`}
               onSubmit={handleSubmit} 
               className="space-y-6"
             >
