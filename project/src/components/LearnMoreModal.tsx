@@ -128,7 +128,7 @@ export function LearnMoreModal({ isOpen, onClose }: LearnMoreModalProps) {
                 don't hesitate to reach out to our student activities coordinator.
               </p>
               <button
-                onClick={onClose}
+                onClick={() => window.location.href = `mailto:clubs@oakridge.in?subject=${encodeURIComponent(`Question about Oakridge Clubs`)}`}
                 className="px-8 py-4 bg-gradient-to-r from-[#44c3cf] to-[#702a82] text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
                 Get Started
