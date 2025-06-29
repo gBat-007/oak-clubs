@@ -40,7 +40,7 @@ const clubs: Club[] = [
     name: 'TriDev',
     focus: 'coding & app development',
     description: 'Coding & App Development Club',
-    fullDescription: 'TriDev is Oakridge\'s premier coding club where students explore the exciting world of software development. From web development to mobile apps, AI to game development, we cover it all.',
+    fullDescription: 'TriDev is Oakridge\'s premier coding club where students explore the exciting world of app development. We have 3 sub-clubs: Android development with Flutter, iOS development with Swift, and Windows development with React. Whether you\'re a beginner or an experienced coder, TriDev has something for everyone.',
     icon: <Code className="w-8 h-8" />,
     color: 'from-[#44c3cf] to-[#702a82]',
     gradient: 'bg-gradient-to-br from-[#44c3cf]/10 to-[#702a82]/10',
