@@ -314,6 +314,20 @@ function App() {
               <ClubCard key={club.id} club={club} onSelect={handleClubSelect} />
             ))}
           </div>
+
+          <div className="mt-12 text-center">
+          <a
+            href="https://forms.gle/oESaBioUmpEkcDQB9"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button
+              className="px-8 py-4 bg-gradient-to-r from-[#44c3cf] to-[#702a82] text-white rounded-xl font-semibold hover:from-[#44c3cf]/90 hover:to-[#702a82]/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              Create Club
+            </button>
+          </a>
+        </div>
         </div>
       </section>
 
