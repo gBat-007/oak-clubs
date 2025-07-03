@@ -1003,33 +1003,83 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
               Thank you for your interest in joining {club.name}. We've received your application and will review it shortly.
             </p>
             <a
-            href={club.whatsapp_comm_link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: 'none' }}
-          >
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                backgroundColor: '#25D366',
-                color: 'white',
-                padding: '10px 15px',
-                borderRadius: '6px',
-                fontSize: '16px',
-                fontFamily: 'sans-serif',
-                fontWeight: 500,
-                boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-              }}
-            >
-              <img
-                src="whatsapp-logo.png"
-                alt="WhatsApp"
-                style={{ width: '20px', height: '20px', marginRight: '10px' }}
-              />
-              Join the WhatsApp Community
-            </div>
-          </a>
+  href={club.whatsapp_comm_link}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ textDecoration: 'none' }}
+>
+  <div
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      backgroundColor: '#25D366',
+      color: 'white',
+      padding: '10px 20px',
+      borderRadius: '9999px', // Capsule shape
+      fontSize: '16px',
+      fontFamily: 'sans-serif',
+      fontWeight: 600,
+      boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
+      transition: 'all 0.3s ease',
+      marginTop: '8px',
+    }}
+    onMouseEnter={e => {
+      e.currentTarget.style.boxShadow = '0 6px 12px rgba(0,0,0,0.2)';
+      e.currentTarget.style.transform = 'translateY(-2px)';
+    }}
+    onMouseLeave={e => {
+      e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+      e.currentTarget.style.transform = 'translateY(0)';
+    }}
+  >
+    <img
+      src="whatsapp-logo.png"
+      alt="WhatsApp"
+      style={{ width: '20px', height: '20px', marginRight: '10px' }}
+    />
+    Join the WhatsApp Community
+  </div>
+</a>
+
+<a
+  href="https://www.linkedin.com/groups/14728060/"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ textDecoration: 'none' }}
+>
+  <div
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      backgroundColor: '#0077B5',
+      color: 'white',
+      padding: '10px 20px',
+      borderRadius: '9999px', // Capsule shape
+      fontSize: '16px',
+      fontFamily: 'sans-serif',
+      fontWeight: 600,
+      boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
+      transition: 'all 0.3s ease',
+      marginTop: '8px',
+    }}
+    onMouseEnter={e => {
+      e.currentTarget.style.boxShadow = '0 6px 12px rgba(0,0,0,0.2)';
+      e.currentTarget.style.transform = 'translateY(-2px)';
+    }}
+    onMouseLeave={e => {
+      e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+      e.currentTarget.style.transform = 'translateY(0)';
+    }}
+  >
+    <img
+      src="linkedin-logo.png"
+      alt="LinkedIn"
+      style={{ width: '20px', height: '20px', marginRight: '10px' }}
+    />
+    Join the LinkedIn Group
+  </div>
+</a>
+
 
             <div className={`${club.gradient} p-6 rounded-2xl border border-white/20 mb-8`}>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">What happens next?</h3>
