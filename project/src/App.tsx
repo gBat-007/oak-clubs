@@ -1002,12 +1002,34 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
             <p className="text-xl text-gray-600 mb-8">
               Thank you for your interest in joining {club.name}. We've received your application and will review it shortly.
             </p>
-            <a href="https://chat.whatsapp.com/ABCDEFGHIJKLMNO" target="_blank" style="text-decoration: none;">
-                <div style="display: inline-flex; align-items: center; background-color: #25D366; color: white; padding: 10px 15px; border-radius: 6px; font-size: 16px; font-family: sans-serif; font-weight: 500; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
-                  <img src="whatsapp-logo.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 10px;">
-                  Join the WhatsApp Community
-                </div>
-            </a>
+            <a
+            href={club.whatsapp_comm_link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none' }}
+          >
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                backgroundColor: '#25D366',
+                color: 'white',
+                padding: '10px 15px',
+                borderRadius: '6px',
+                fontSize: '16px',
+                fontFamily: 'sans-serif',
+                fontWeight: 500,
+                boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+              }}
+            >
+              <img
+                src="whatsapp-logo.png"
+                alt="WhatsApp"
+                style={{ width: '20px', height: '20px', marginRight: '10px' }}
+              />
+              Join the WhatsApp Community
+            </div>
+          </a>
 
             <div className={`${club.gradient} p-6 rounded-2xl border border-white/20 mb-8`}>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">What happens next?</h3>
