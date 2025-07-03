@@ -18,6 +18,7 @@ interface Club {
   advisor: string;
   leadership: string;
   leadership_mail: string;
+  whatsapp_comm_link: string;
   activities: string[][];
   nextMeeting: string;
   image: string;
@@ -49,8 +50,9 @@ const clubs: Club[] = [
     location: 'Hybrid - Online every Wednesday, except offline in room 303 first Wednesday of each month',
     members: 36,
     advisor: 'CS Teacher Rama B',
-    leadership_mail: 'gautam_bansal@oakridge.in',
     leadership: 'Gautam Bansal, Gaurav Kshirsagar, and Ritesh Marupudi',
+    leadership_mail: 'gautam_bansal@oakridge.in',
+    whatsapp_comm_link: 'https://chat.whatsapp.com/FL2aw9zXT3X3HSRFHIJztN',
     activities: [
       ['Hackathons & Coding Competitions','Enjoy coding competitions across a range of platforms and languages, with AI allowed and encouraged!'],
       ['Open Source Contributions','Let\'s put our code out there for the world to see!'],
@@ -76,6 +78,7 @@ const clubs: Club[] = [
     advisor: 'Physics Teacher Rajesh Javvadi',
     leadership: 'Yash Xavier and Roshan Churukanti',
     leadership_mail: 'yash_xavier@oakridge.in',
+    whatsapp_comm_link: 'https://chat.whatsapp.com/LpDH1xISP0q9B1NPbAikQm',
     activities: [
   ['Stargazing Sessions', 'Nighttime events where participants observe stars, planets, and constellations with the naked eye or telescopes.'],
   ['Telescope Workshops', 'Hands-on sessions to learn how to set up, use, and maintain different types of telescopes.'],
@@ -340,7 +343,20 @@ function App() {
     }}
     className="px-8 py-4 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-xl font-semibold hover:from-green-500 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
   >
-    Test Join Success
+    Test TriDev Join Success
+  </button>
+  <button
+    onClick={() => {
+      const astrophilesClub = clubs.find(club => club.id === 'astrophiles');
+      if (astrophilesClub) {
+        setSelectedClub(astrophilesClub);
+        setShowJoinForm(false);
+        setJoinSuccess(true);
+      }
+    }}
+    className="px-8 py-4 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-xl font-semibold hover:from-green-500 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+  >
+    Test Astrophiles Join Success
   </button>
 </div>
         </div>
@@ -986,7 +1002,13 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
             <p className="text-xl text-gray-600 mb-8">
               Thank you for your interest in joining {club.name}. We've received your application and will review it shortly.
             </p>
-            
+            <a href="https://chat.whatsapp.com/ABCDEFGHIJKLMNO" target="_blank" style="text-decoration: none;">
+                <div style="display: inline-flex; align-items: center; background-color: #25D366; color: white; padding: 10px 15px; border-radius: 6px; font-size: 16px; font-family: sans-serif; font-weight: 500; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                  <img src="whatsapp-logo.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 10px;">
+                  Join the WhatsApp Community
+                </div>
+            </a>
+
             <div className={`${club.gradient} p-6 rounded-2xl border border-white/20 mb-8`}>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">What happens next?</h3>
               <div className="space-y-3 text-left">
