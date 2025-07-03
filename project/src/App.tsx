@@ -328,6 +328,21 @@ function App() {
             </button>
           </a>
         </div>
+        <div className="mt-4 text-center">
+  <button
+    onClick={() => {
+      const tridevClub = clubs.find(club => club.id === 'tridev');
+      if (tridevClub) {
+        setSelectedClub(tridevClub);
+        setShowJoinForm(false);
+        setJoinSuccess(true);
+      }
+    }}
+    className="px-8 py-4 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-xl font-semibold hover:from-green-500 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+  >
+    Test Join Success
+  </button>
+</div>
         </div>
       </section>
 
