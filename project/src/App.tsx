@@ -1087,20 +1087,20 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
               <h3 className="text-lg font-semibold text-gray-900 mb-4">What happens next?</h3>
               <div className="space-y-3 text-left">
                 <div className="flex items-start">
-                  <div className="w-6 h-6 bg-[#44c3cf] rounded-full flex items-center justify-center mr-3 mt-0.5">
-                    <span className="text-white text-sm font-bold">1</span>
+                  <div className="w-6 aspect-square bg-[#44c3cf] rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-0.5">
+                    <span>1</span>
                   </div>
                   <p className="text-gray-700">The club leadership will review your application within 2-3 business days.</p>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-6 h-6 bg-[#702a82] rounded-full flex items-center justify-center mr-3 mt-0.5">
-                    <span className="text-white text-sm font-bold">2</span>
-                  </div>
+                  <div className="w-6 aspect-square bg-[#702a82] rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-0.5">
+                    <span>2</span>
+                  </div>  
                   <p className="text-gray-700">You'll receive an email confirmation with next steps.</p>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-6 h-6 bg-[#ffcc08] rounded-full flex items-center justify-center mr-3 mt-0.5">
-                    <span className="text-white text-sm font-bold">3</span>
+                  <div className="w-6 aspect-square bg-[#ffcc08] rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-0.5">
+                    <span>3</span>
                   </div>
                   <p className="text-gray-700">Attend your first meeting next {club.meetingDay.slice(0,-1)} at {club.meetingTime}!</p>
                 </div>

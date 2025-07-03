@@ -91,27 +91,29 @@ export function LearnMoreModal({ isOpen, onClose }: LearnMoreModalProps) {
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">How to Join a Club</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <div className="w-8 h-8 bg-[#44c3cf] rounded-full flex items-center justify-center mr-4 mt-1">
-                    <span className="text-white text-sm font-bold">1</span>
-                  </div>
+                  <div className="w-6 aspect-square bg-[#44c3cf] rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-0.5">
+  <span>1</span>
+</div>
+
                   <div>
                     <h4 className="font-semibold text-gray-900">Browse Available Clubs</h4>
                     <p className="text-gray-600">Explore our club directory to find clubs that match your interests.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-8 h-8 bg-[#702a82] rounded-full flex items-center justify-center mr-4 mt-1">
-                    <span className="text-white text-sm font-bold">2</span>
-                  </div>
+                  <div className="w-6 aspect-square bg-[#702a82] rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-0.5">
+  <span>2</span>
+</div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Submit Application</h4>
                     <p className="text-gray-600">Fill out the membership application form with your details and motivation.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-8 h-8 bg-[#ffcc08] rounded-full flex items-center justify-center mr-4 mt-1">
-                    <span className="text-white text-sm font-bold">3</span>
-                  </div>
+                  <div className="w-6 aspect-square bg-[#ffcc08] rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-0.5">
+  <span>3</span>
+</div>
+
                   <div>
                     <h4 className="font-semibold text-gray-900">Attend First Meeting</h4>
                     <p className="text-gray-600">Join your first club meeting and start participating in activities.</p>
