@@ -534,11 +534,11 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               {club.customImage ? (
-                  <div className="w-16 h-16 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                  <div className="inline-flex items-center w-16 h-16 rounded-2xl mb-6 overflow-hidden">
                     {club.icon}
                   </div>
                 ) : (
-                  <div className={`p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`inline-flex items-center p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white mb-6`}>
                     {club.icon}
                   </div>
                 )}
@@ -751,11 +751,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl border border-white/20 p-8 shadow-xl">
             <div className="text-center mb-8">
               {club.customImage ? (
-          <div className="w-16 h-16 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+          <div className="inline-flex items-center w-16 h-16 rounded-2xl mb-4 overflow-hidden">
             {club.icon}
           </div>
         ) : (
-          <div className={`p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white group-hover:scale-110 transition-transform duration-300`}>
+          <div className={`inline-flex items-center p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white mb-4`}>
             {club.icon}
           </div>
         )}
