@@ -336,7 +336,7 @@ function App() {
             </button>
           </a>
         </div>
-        <div className="mt-4 text-center">
+        {/* <div className="mt-4 text-center">
   <button
     onClick={() => {
       const tridevClub = clubs.find(club => club.id === 'tridev');
@@ -363,7 +363,7 @@ function App() {
   >
     Test Astrophiles Join Success
   </button>
-</div>
+</div> */}
         </div>
       </section>
 
@@ -429,7 +429,7 @@ function App() {
           
           <div className="border-t border-gray-200 mt-8 pt-8 text-center">
             <p className="text-sm text-gray-500">
-              © 2025 Oakridge International School. All rights reserved. Not Developed by Oakridge International School, developed by students.
+              © 2025 Oakridge International School. All rights reserved. {/* Not Developed by Oakridge International School, developed by students. */}
             </p>
           </div>
         </div>
