@@ -456,7 +456,7 @@ function ClubCard({ club, onSelect }: { club: Club; onSelect: (club: Club) => vo
       onClick={() => onSelect(club)}
     >
       <div className="flex items-start justify-between mb-6">
-                {club.customImage ? (
+        {club.customImage ? (
           <div className="w-16 h-16 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
             {club.icon}
           </div>
@@ -533,9 +533,15 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-                <div className={`inline-flex items-center p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white mb-6`}>
-                {club.icon}
-              </div>
+              {club.customImage ? (
+                  <div className="w-16 h-16 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                    {club.icon}
+                  </div>
+                ) : (
+                  <div className={`p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white group-hover:scale-110 transition-transform duration-300`}>
+                    {club.icon}
+                  </div>
+                )}
               <h1 className="text-5xl font-bold text-gray-900 mb-6">{club.name}</h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">{club.fullDescription}</p>
               
@@ -744,9 +750,15 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         <div className="max-w-2xl mx-auto">
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl border border-white/20 p-8 shadow-xl">
             <div className="text-center mb-8">
-              <div className={`inline-flex items-center p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white mb-4`}>
-                {club.icon}
-              </div>
+              {club.customImage ? (
+          <div className="w-16 h-16 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+            {club.icon}
+          </div>
+        ) : (
+          <div className={`p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white group-hover:scale-110 transition-transform duration-300`}>
+            {club.icon}
+          </div>
+        )}
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Join {club.name}</h2>
               <p className="text-gray-600">Fill out the form below to become a member of our club</p>
             </div>
