@@ -8,6 +8,7 @@ interface Club {
   name: string;
   description: string;
   fullDescription: string;
+  customImage: boolean;
   icon: React.ReactNode;
   color: string;
   gradient: string;
@@ -43,9 +44,10 @@ const clubs: Club[] = [
     focus: 'coding & app development',
     description: 'Coding & App Development Club',
     fullDescription: 'TriDev is Oakridge\'s premier coding club where students explore the exciting world of app development. We have 3 sub-clubs: Android development with Flutter, iOS development with Swift, and Windows development with React. Whether you\'re a beginner or an experienced coder, TriDev has something for everyone.',
-    icon: <img src="/TriDev Club Logo.png" alt="TriDev Club Logo" className="w-18 h-18" />,
+    customImage: true,
+    icon: <img src="/TriDev Club Logo.png" alt="TriDev Club Logo" className="w-10 h-10" />,
     color: 'from-[#44c3cf] to-[#702a82]',
-    gradient: 'bg-gradient-to-br from-[#44c3cf]/0 to-[#702a82]/0',
+    gradient: 'bg-gradient-to-br from-[#44c3cf]/10 to-[#702a82]/10',
     meetingTime: '3:30 PM - 5:00 PM',
     meetingDay: 'Wednesdays',
     location: 'Hybrid - Online every Wednesday, except offline in room 303 first Wednesday of each month',
@@ -70,6 +72,7 @@ const clubs: Club[] = [
     focus: 'astrophysics, astronomy, and astrophotography',
     description: 'Astronomy & Space Science Club',
     fullDescription: 'Astrophiles brings together students passionate about astronomy, space exploration, and the mysteries of the universe. We observe celestial events, study cosmic phenomena, and dream of the stars.',
+    customImage: false,
     icon: <Telescope className="w-8 h-8" />,
     color: 'from-[#702a82] to-[#44c3cf]',
     gradient: 'bg-gradient-to-br from-[#702a82]/10 to-[#44c3cf]/10',
@@ -453,9 +456,19 @@ function ClubCard({ club, onSelect }: { club: Club; onSelect: (club: Club) => vo
       onClick={() => onSelect(club)}
     >
       <div className="flex items-start justify-between mb-6">
-        <div className={`p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white group-hover:scale-110 transition-transform duration-300`}>
-          {club.icon}
-        </div>
+                {club.customImage ? (
+          <div className="w-16 h-16 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+            <img
+              src={club.icon} // should be the image URL/path
+              alt="Club Logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ) : (
+          <div className={`p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white group-hover:scale-110 transition-transform duration-300`}>
+            {club.icon}
+          </div>
+        )}
         <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1 transition-all duration-300" />
       </div>
       
