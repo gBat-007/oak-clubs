@@ -45,7 +45,7 @@ const clubs: Club[] = [
     description: 'Coding & App Development Club',
     fullDescription: 'TriDev is Oakridge\'s premier coding club where students explore the exciting world of app development. We have 3 sub-clubs: Android development with Flutter, iOS development with Swift, and Windows development with React. Whether you\'re a beginner or an experienced coder, TriDev has something for everyone.',
     customImage: true,
-    icon: <img src="/TriDev Club Logo.png" alt="TriDev Club Logo" className="w-10 h-10" />,
+    icon: <img src="/TriDev Club Logo.png" alt="TriDev Club Logo" className="w-full h-full object-cover" />,
     color: 'from-[#44c3cf] to-[#702a82]',
     gradient: 'bg-gradient-to-br from-[#44c3cf]/10 to-[#702a82]/10',
     meetingTime: '3:30 PM - 5:00 PM',
@@ -458,11 +458,7 @@ function ClubCard({ club, onSelect }: { club: Club; onSelect: (club: Club) => vo
       <div className="flex items-start justify-between mb-6">
                 {club.customImage ? (
           <div className="w-16 h-16 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
-            <img
-              src={club.icon} // should be the image URL/path
-              alt="Club Logo"
-              className="w-full h-full object-cover"
-            />
+            {club.icon}
           </div>
         ) : (
           <div className={`p-4 bg-gradient-to-br ${club.color} rounded-2xl text-white group-hover:scale-110 transition-transform duration-300`}>
