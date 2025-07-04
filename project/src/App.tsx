@@ -43,7 +43,7 @@ const clubs: Club[] = [
     focus: 'coding & app development',
     description: 'Coding & App Development Club',
     fullDescription: 'TriDev is Oakridge\'s premier coding club where students explore the exciting world of app development. We have 3 sub-clubs: Android development with Flutter, iOS development with Swift, and Windows development with React. Whether you\'re a beginner or an experienced coder, TriDev has something for everyone.',
-    icon: <Code className="w-8 h-8" />,
+    icon: <img src="/TriDev Club Logo.png" alt="TriDev Club Logo" className="w-10 h-10" />,
     color: 'from-[#44c3cf] to-[#702a82]',
     gradient: 'bg-gradient-to-br from-[#44c3cf]/10 to-[#702a82]/10',
     meetingTime: '3:30 PM - 5:00 PM',
@@ -62,7 +62,7 @@ const clubs: Club[] = [
       ['Project Showcases','Everyone is encouraged to share and showcase their projects in our special project showcases!']
     ],
     nextMeeting: 'January 17, 2025',
-    image: 'TriDev Club Logo.png'
+    image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'astrophiles',
