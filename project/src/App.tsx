@@ -62,7 +62,7 @@ const clubs: Club[] = [
       ['Project Showcases','Everyone is encouraged to share and showcase their projects in our special project showcases!']
     ],
     nextMeeting: 'January 17, 2025',
-    image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'TriDev Club Logo.png'
   },
   {
     id: 'astrophiles',
