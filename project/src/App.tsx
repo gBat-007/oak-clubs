@@ -39,7 +39,7 @@ interface JoinFormData {
 
 const clubs: Club[] = [
   {
-    id: 'tridev',
+    id: 'TriDev',
     name: 'TriDev',
     focus: 'coding & app development',
     description: 'Coding & App Development Club',
@@ -67,7 +67,7 @@ const clubs: Club[] = [
     image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
-    id: 'astrophiles',
+    id: 'Astrophiles',
     name: 'Astrophiles',
     focus: 'astrophysics, astronomy, and astrophotography',
     description: 'Astronomy & Space Science Club',
@@ -688,15 +688,23 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   const form = e.currentTarget;
   const formDataObj = new FormData(form);
 
+  // Convert FormData to a plain object
+  const json: { [key: string]: string } = {};
+  formDataObj.forEach((value, key) => {
+    json[key] = value.toString();
+  });
+
   try {
-    await fetch("/", {
+    await fetch("https://script.google.com/macros/s/AKfycbwY2GWTaNGmj5ABDuo77urCro3wPtJCSjq6ViWG96_85GyF6uxjiLGf9LEkPbPVjftIIw/exec", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formDataObj as any).toString(),
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": " hnkp478983475hcjhr34nkrs4uycrr734ync7", // Your custom header
+      },
+      body: JSON.stringify(json),
     });
 
-    // Instead of redirecting, just show success in React
-    onSuccess();
+    onSuccess(); // Show success message or UI
   } catch (error) {
     alert("Submission failed. Please try again.");
     console.error(error);
@@ -704,6 +712,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(false);
   }
 };
+
 
 
   const handleInputChange = (field: keyof JoinFormData, value: string) => {
@@ -763,18 +772,12 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               <p className="text-gray-600">Fill out the form below to become a member of our club</p>
             </div>
 
-            <form 
+            <form
               name="club-application"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              onSubmit={handleSubmit} 
+              onSubmit={handleSubmit}
               className="space-y-6"
             >
-              {/* Netlify Hidden Fields */}
-              <input type="hidden" name="form-name" value="club-application" />
-              <input type="hidden" name="bot-field" />
-              <input type="hidden" name="club" value={club.id} />
+            <input type="hidden" name="club" value={club.id} />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
