@@ -695,7 +695,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   });
 
   try {
-    await fetch("https://script.google.com/macros/s/AKfycbwY2GWTaNGmj5ABDuo77urCro3wPtJCSjq6ViWG96_85GyF6uxjiLGf9LEkPbPVjftIIw/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbycmOodklNiczbESbgQa1gfRcR-V0cK663WScsg1B9Ycg8hKBJZPWAYHng34t9vB6w-9Q/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
