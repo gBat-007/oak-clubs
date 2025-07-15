@@ -182,11 +182,11 @@ function App() {
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity duration-200"
               >
-                <img 
+                {/* <img 
                   src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
                   alt="Oakridge International School" 
                   className="h-12 w-auto"
-                />
+                /> */}
               </a>
              <div className="hidden sm:block">
                 <h1 className="text-2xl font-bold text-gray-900">Oakridge Clubs</h1>
@@ -378,11 +378,11 @@ function App() {
                 rel="noopener noreferrer"
                 className="inline-block hover:opacity-80 transition-opacity duration-200"
               >
-                <img 
+                {/* <img 
                   src="/oak-with-text-logo.png" 
                   alt="Oakridge International School" 
                   className="h-12 w-auto mx-auto md:mx-0 mb-4"
-                />
+                /> */}
               </a>
             </div>
 
@@ -514,11 +514,11 @@ function ClubDetail({ club, onBack, onJoin, onContact }: { club: Club; onBack: (
               rel="noopener noreferrer"
               className="hover:opacity-80 transition-opacity duration-200 mr-4"
             >
-              <img 
+              {/* <img 
                 src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
                 alt="Oakridge International School" 
                 className="h-12 w-auto"
-              />
+              /> */}
             </a>
            <div>
               <h1 className="text-xl font-bold text-gray-900">{club.name}</h1>
@@ -740,11 +740,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               rel="noopener noreferrer"
               className="hover:opacity-80 transition-opacity duration-200 mr-4"
             >
-              <img 
+              {/* <img 
                 src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
                 alt="Oakridge International School" 
                 className="h-12 w-auto"
-              />
+              /> */}
             </a>
             <div>
               <h1 className="text-xl font-bold text-gray-900">Join {club.name}</h1>
@@ -1002,11 +1002,11 @@ function JoinSuccess({ club, onBack }: { club: Club; onBack: () => void }) {
               rel="noopener noreferrer"
               className="hover:opacity-80 transition-opacity duration-200 mr-4"
             >
-              <img 
+              {/* <img 
                 src="/cropped-OIS-central-Horizontal-logo-copy-2.png" 
                 alt="Oakridge International School" 
                 className="h-12 w-auto"
-              />
+              /> */}
             </a>
             <div>
               <h1 className="text-xl font-bold text-gray-900">Application Submitted</h1>
