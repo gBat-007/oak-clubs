@@ -336,7 +336,7 @@ function App() {
             </button>
           </a>
         </div>
-        {/* <div className="mt-4 text-center">
+        <div className="mt-4 text-center">
   <button
     onClick={() => {
       const tridevClub = clubs.find(club => club.id === 'tridev');
@@ -363,7 +363,7 @@ function App() {
   >
     Test Astrophiles Join Success
   </button>
-</div> */}
+</div>
         </div>
       </section>
 
