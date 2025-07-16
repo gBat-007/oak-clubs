@@ -688,20 +688,30 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   const form = e.currentTarget;
   const formDataObj = new FormData(form);
 
-  // Convert FormData to a plain object
-  const json: { [key: string]: string } = {};
-  formDataObj.forEach((value, key) => {
-    json[key] = value.toString();
-  });
+  // // Convert FormData to a plain object
+  // const json: { [key: string]: string } = {};
+  // formDataObj.forEach((value, key) => {
+  //   json[key] = value.toString();
+  // });
 
   try {
-    await fetch("https://script.google.com/macros/s/AKfycbxnkOf9OjviA1XOpIjzOC2CjR3WtdWR8n8zTPbtETSRzXBF7JZnyH6_SmxD-k8Uprtn2Q/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbwZosC1UboJBt3dVfUIHegYt4nglWYF63mbwtWzUq562I5Owl25yZe0sg1DG9crmzCMbQ/exec", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "x-api-key": "hnkp478983475hcjhr34nkrs4uycrr734ync7", // Your custom header
+        "Content-Type": "text/plain;charset=utf-8"
       },
-      body: JSON.stringify(json),
+      body: JSON.stringify({
+        apiKey: "hnkp478983475hcjhr34nkrs4uycrr734ync7",
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        studentId: formData.studentId,
+        phone: formData.phone,
+        grade: formData.grade,
+        club: club.id,
+        experience: formData.experience,
+        motivation: formData.motivation
+      }),
     });
 
     onSuccess(); // Show success message or UI
