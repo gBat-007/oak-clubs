@@ -695,11 +695,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   });
 
   try {
-    await fetch("https://script.google.com/macros/s/AKfycbycmOodklNiczbESbgQa1gfRcR-V0cK663WScsg1B9Ycg8hKBJZPWAYHng34t9vB6w-9Q/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbwwUmQEl1ik4HB-KdR-q1F2DwcSHlgzJJ81aP9rj4MTyioZbbZJyZRylXwGM4olCe7t/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": " hnkp478983475hcjhr34nkrs4uycrr734ync7", // Your custom header
+        "x-api-key": "hnkp478983475hcjhr34nkrs4uycrr734ync7", // Your custom header
       },
       body: JSON.stringify(json),
     });
